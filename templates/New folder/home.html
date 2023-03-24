@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" enctype="multipart/form-data">
+    
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block title %} URL SHORTENER {% endblock %} 
+    {% block main %}
+    <h1>URL SHORTENER</h1>
+    
+<form action="your-url" method="POST">
+    <label for="url">Website's URL</label>
+    <input type="url" name="url" value="" required>
+    <br>
+    <label for="code">Shorten name</label>
+    <input type="text" name="code" value="" required>
+    <br>
+    <input type="submit" value="SHORTEN">
+</form> 
+<br> <br>
+<form action="your-url" method="POST" enctype="multipart/form-data">
+    <label for="file">Select file </label>
+    <input type="file" name="file" value="" required>
+    <br>
+    <label for="code">Shorten name</label>
+    <input type="text" name="code" value="" required>
+    <br>
+    <input type="submit" value="SHORTEN">
+</form>
+{% if codes %}
+<h2>Codes you have created</h2>
+<ul>
+    {% for code in codes %}
+    <a href="{{url_for('redirect_to_url',code=code)}}">
+    <li>{{code}}</li>
+    </a>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
+</body>
+</html>
